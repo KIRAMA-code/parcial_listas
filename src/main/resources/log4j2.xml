@@ -81,17 +81,19 @@
             <AppenderRef ref="FileLogger"/>
         </Root>
 
-        <!-- Logger específico para el paquete com.example -->
-        <Logger name="com.example" level="debug" additivity="false">
+        <!-- Logger específico para el paquete org.example -->
+        <Logger name="org.example" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="FileLogger"/>
         </Logger>
 
         <Logger name="tiempos" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
             <AppenderRef ref="FileLoggerTiempos"/>
         </Logger>
 
         <Logger name="performance" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
             <AppenderRef ref="FileLoggerPerformance"/>
         </Logger>
 

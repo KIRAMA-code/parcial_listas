@@ -9,6 +9,7 @@ public class LineaEvolutiva {
 
         head = null;
         size = 0;
+        XPacumulador = 0;
 
     }
 
@@ -36,22 +37,58 @@ public class LineaEvolutiva {
         //extraigo el atributo xp del pokemon actual
         int ExperienciaRequerida = head.getData().getXP_requerida();
 
-        Nodo<Pokemon> nodo = new Nodo<>(head.getData());
-        int faltante = ExperienciaRequerida - XPacumulador;
+
+
         // si la experiencia es mayor o igual a la que necesita para la siguiente evolucion
         //evoluciona y ahora el head es la conexión que tiene el actual, que se muestra con getnext()
-        if (ExperienciaRequerida >= XPacumulador){
+        if (ExperienciaRequerida != -1 && this.XPacumulador >= ExperienciaRequerida){
 
-         head = nodo.getNext();
+         head = head.getNext();
 
 
-        }else {
-            System.out.println("faltan: " + faltante + " puntos de experiencia para la siguiente evolucion");
         }
 
-
-
     }
+
+    public int getAtaque (){
+        int ataque = head.getData().getAtaque();
+        return ataque;
+    }
+
+    public int getDefensa(){
+        int defensa = head.getData().getDefensa();
+        return defensa;
+    }
+
+    public  boolean vida ()
+    {
+        int hp = head.getData().getHp();
+        boolean vida = true;
+        if (hp == 0){
+            vida = false;
+        }
+        return vida;
+    }
+    public int getHp (){
+        int hp = head.getData().getHp();
+        return hp;
+    }
+
+    public  int getHpMaximo(){
+        int hpMaximo = head.getData().getHpMaximo();
+        return hpMaximo;
+    }
+
+
+    public void setHp(int hp){
+        head.getData().setHp(hp);
+    }
+
+    public void ganarExperiencia(int xpGanada) {
+        this.XPacumulador += xpGanada;
+        evolucionar();
+    }
+
 
     @Override
     public String toString(){
