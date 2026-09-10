@@ -4,7 +4,7 @@
     <!-- Variables reutilizables para la configuración -->
     <Properties>
         <!-- Carpeta donde se almacenarán los archivos de log -->
-        <Property name="app_log_root">logs</Property>
+        <Property name="app_log_root">untitled/logs</Property>
         <!-- Formato de cada mensaje de log -->
         <Property name="log_pattern">%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Property>
 
