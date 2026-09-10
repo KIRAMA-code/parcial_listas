@@ -9,7 +9,8 @@ import java.util.Locale;
 
 @Log4j2(topic = "performance")
 public class PerformanceReporter {
-
+    //clase extraida del ejercicio analisis_algoritmo del repo de la clase
+    //la clase .xml tambien
     private static final SystemInfo si = new SystemInfo();
     private static final long BYTES_PER_MB = 1024L * 1024L;
 
