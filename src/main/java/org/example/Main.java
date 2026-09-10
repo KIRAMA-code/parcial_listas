@@ -1,11 +1,21 @@
 package org.example;
 
+import lombok.extern.log4j.Log4j2;
 import org.example.Model.LineaEvolutiva;
 import org.example.Model.Pokemon;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.example.Util.PerformanceReporter;
 
-import static java.util.Collections.max;
+@Log4j2
 public class Main {
+
+    private static final Logger loggerTiempos = LogManager.getLogger("tiempos");
+
     public static void main(String[] args) {
+
+
+
 
         //creo cada fase de charmander
         Pokemon Charmander = new Pokemon("Charmander",39,39,52,43,1500);
@@ -18,8 +28,42 @@ public class Main {
         pokemon1.add(Charmeleon);
         pokemon1.add(Charmander);
 
-        Pokemon [] hordaEnemigos = new Pokemon[100000];
+        Pokemon rattata = new Pokemon("Rattata",30,30,56,35,0);
+        boolean vidaEnemigo = rattata.vida();
+        boolean vidamipokemon = pokemon1.vida();
+        //----------------------PRUEBA MOCK DATA----------------------------------------
+        while (vidaEnemigo && vidamipokemon){
+            int dañoaEnemigo = Math.max(1,pokemon1.getAtaque() - rattata.getDefensa());
+            int dañoAsumido = Math.max(1,rattata.getAtaque() - pokemon1.getDefensa());
 
+            int rest1 = rattata.getHp() - dañoaEnemigo;
+            rattata.setHp(rest1);
+            log.info("vida del rattata: " + rattata.getHp());
+            //si la vida del enemigo es 0 o menos mi pokemon gana xp y utiliza el metodo evolucionar que esta contenido dentro del metodo
+            //ganar experiencia
+            if ( rattata.getHp()<= 0 ){
+                //le añado 50 de experiencia al acumulador
+                pokemon1.ganarExperiencia(50);
+                pokemon1.getXP();
+                //la vida cambia a false y se sale del while
+                vidaEnemigo = false;
+                break;
+            }
+            int rest2 = pokemon1.getHp() - dañoAsumido;
+            pokemon1.setHp(rest2);
+            log.info("vida del pokemon " + pokemon1.getHp());
+            // si mi pokemon muere se acaba y ya
+            if (pokemon1.getHp() <= 0){
+                //la vida se convierte en false y se sale
+                vidamipokemon = false;
+
+            }
+
+        }
+        //------------------------------------------------------------------------------------------
+
+
+        Pokemon [] hordaEnemigos = new Pokemon[100000];
 
         for (int i = 0; i < hordaEnemigos.length; i++) {
             //relleno cada atributo con numeros aleatorio bajos para que charmander pueda ganar y evolucionar
@@ -35,19 +79,32 @@ public class Main {
 
         }
 
-        iniciarEntrenamientoMasivo(pokemon1,hordaEnemigos);
+        //iniciarEntrenamientoMasivo(pokemon1,hordaEnemigos,50);
 
 
+        Pokemon [] hordaCartepie = new Pokemon[100000];
 
+        for (int i = 0; i < hordaCartepie.length; i++) {
+            Pokemon cartepie = new Pokemon("Cartepie",45,45,30,35,0);
+            hordaCartepie[i] = cartepie;
+        }
+        //gananciaXP es la que se gana cuando se derrota
+        iniciarEntrenamientoMasivo(pokemon1,hordaCartepie,50);
 
 
 
     }
 
-    static public void iniciarEntrenamientoMasivo (LineaEvolutiva mipokemon, Pokemon[] hordaEnemigos){
+    static public void iniciarEntrenamientoMasivo (LineaEvolutiva mipokemon, Pokemon[] hordaEnemigos,int gananciaXP){
+        log.info("Iniciando entrenamiento masivo");
 
+        log.info("Estado de memoria antes de la lógica del método");
+        PerformanceReporter.reportarMemoriaSistema();
+        PerformanceReporter.medirPesoObjeto(mipokemon,"Linea de evolucion");
+        PerformanceReporter.medirPesoObjeto(hordaEnemigos[0],"nodo enemigo()");
+        long tiempoInicio = System.nanoTime();
         for (int i = 0; i < hordaEnemigos.length; i++) {
-            mipokemon.setHp(mipokemon.getHpMaximo());//le subimos la vida al maximo despues de cada pelea
+            mipokemon.setHp(mipokemon.getHpMaximo());//le subimos la vida al máximo después de cada pelea
             //escoge al primer enemigo
             Pokemon enemigo = hordaEnemigos[i];
             //calculo los daños con la formula del documento pdf
@@ -57,6 +114,7 @@ public class Main {
             boolean vidaEnemigo = enemigo.vida();
             boolean vidamipokemon = mipokemon.vida();
 
+
            while (vidamipokemon && vidaEnemigo){
                 //peleo con el primer enemigo por turnos
                int rest1 = enemigo.getHp() - dañoaEnemigo;
@@ -65,9 +123,10 @@ public class Main {
                //ganar experiencia
               if ( enemigo.getHp()<= 0 ){
                   //le añado 50 de experiencia al acumulador
-                  mipokemon.ganarExperiencia(50);
+                  mipokemon.ganarExperiencia(gananciaXP);
                   //la vida cambia a false y se sale del while
                   vidaEnemigo = false;
+                  break;
               }
                int rest2 = mipokemon.getHp() - dañoAsumido;
                mipokemon.setHp(rest2);
@@ -84,5 +143,10 @@ public class Main {
 
 
         }
+        long tiempoFin = System.nanoTime();
+        loggerTiempos.info("timepo total de ejecución: " + (tiempoFin - tiempoInicio + " ns"));
+        log.info("estado de la memoria despues de la lógica del método");
+        PerformanceReporter.reportarMemoriaSistema();
+
     }
 }

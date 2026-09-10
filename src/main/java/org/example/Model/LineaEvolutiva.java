@@ -34,13 +34,13 @@ public class LineaEvolutiva {
     }
 
     public void evolucionar (){
-        //extraigo el atributo xp del pokemon actual
+        //extraigo la xp que necesita para evolucionar
         int ExperienciaRequerida = head.getData().getXP_requerida();
 
 
 
-        // si la experiencia es mayor o igual a la que necesita para la siguiente evolucion
-        //evoluciona y ahora el head es la conexión que tiene el actual, que se muestra con getnext()
+        // si la experiencia del acumulador es mayor o igual a la que necesita para la siguiente evolucion
+        //evoluciona y ahora el head es la conexión que tiene con el siguiente , que se muestra con getnext()
         if (ExperienciaRequerida != -1 && this.XPacumulador >= ExperienciaRequerida){
 
          head = head.getNext();
@@ -87,6 +87,15 @@ public class LineaEvolutiva {
     public void ganarExperiencia(int xpGanada) {
         this.XPacumulador += xpGanada;
         evolucionar();
+    }
+
+    public int getXP(){
+        return XPacumulador;
+    }
+
+    public Pokemon getFaseActual(){
+        Pokemon pokemon = head.getData();
+        return pokemon;
     }
 
 
