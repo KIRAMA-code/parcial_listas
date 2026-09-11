@@ -5,6 +5,7 @@ import org.example.Model.LineaEvolutiva;
 import org.example.Model.Pokemon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.Service.ReporteBatalla;
 import org.example.Util.PerformanceReporter;
 
 import java.util.LinkedList;
@@ -84,10 +85,10 @@ public class Main {
         //iniciarEntrenamientoMasivo(pokemon1,hordaEnemigos,50);
 
 
-        Pokemon [] hordaCartepie = new Pokemon[25000];
+        Pokemon [] hordaCartepie = new Pokemon[100000];
 
         for (int i = 0; i < hordaCartepie.length; i++) {
-            Pokemon cartepie = new Pokemon("Cartepie",45,45,30,35,0);
+            Pokemon cartepie = new Pokemon("cartepie",45,45,30,35,0);
             hordaCartepie[i] = cartepie;
         }
         //gananciaXP es la que se gana cuando se derrota
@@ -171,15 +172,23 @@ public class Main {
 
     public static void enfrentamientoEquipo (LinkedList <LineaEvolutiva> equipoRocket, Pokemon[] hordacaterpie,int gananciaXP){
 
+        LinkedList <ReporteBatalla> cajanegra = new LinkedList<>();
 
 
-        for (int j = 0; j < 4; j++) {
-            Pokemon pokemonenBatalla =  equipoRocket.getFirst().getFaseActual();
-            LineaEvolutiva lineapokemon = equipoRocket.getFirst();
+            int k = 0;
 
-            System.out.print("pokemon en lucha: " + pokemonenBatalla );
 
             for (int i = 0; i < hordacaterpie.length; i++) {
+                Pokemon pokemonenBatalla =  equipoRocket.getFirst().getFaseActual();
+                LineaEvolutiva lineapokemon = equipoRocket.getFirst();
+                log.info("pokemon en lucha: " + pokemonenBatalla );
+                if (k == 50){
+                    equipoRocket.addLast(equipoRocket.getFirst());
+                    equipoRocket.removeFirst();
+                    k = 0;
+                }
+
+
                 pokemonenBatalla.setHp(pokemonenBatalla.getHpMaximo());//le subimos la vida al máximo después de cada pelea
                 //escoge al primer enemigo
                 Pokemon enemigo = hordacaterpie[i];
@@ -214,13 +223,38 @@ public class Main {
                     }
 
 
+
+
+                }
+                k++;
+
+                ReporteBatalla reporte1 = new ReporteBatalla(pokemonenBatalla.getNombre(), enemigo.getNombre(), 1);
+                if (cajanegra.size() == 0){
+                    cajanegra.add(reporte1);
+                }
+                else{
+
+                    if (reporte1.equals(cajanegra.getFirst())){
+                        cajanegra.getFirst().setCantidadBatallas(1);
+                    }else{
+                        cajanegra.add(reporte1);
+                    }
+
                 }
 
 
+
+                if (cajanegra.size() > 10){
+                    cajanegra.removeLast();
+                }
+
+
+
+            }
+            for (int i = 0; i < cajanegra.size(); i++) {
+                log.info("Reporte total : " + cajanegra.get(i));
             }
 
-            equipoRocket.remove().getFaseActual();
-            equipoRocket.add(lineapokemon);
-        }
+
     }
 }
