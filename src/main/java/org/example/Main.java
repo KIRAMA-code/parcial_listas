@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.Util.PerformanceReporter;
 
+import java.util.LinkedList;
+
 @Log4j2
 public class Main {
 
@@ -18,8 +20,8 @@ public class Main {
 
 
         //creo cada fase de charmander
-        Pokemon Charmander = new Pokemon("Charmander",39,39,52,43,1500);
-        Pokemon Charmeleon = new Pokemon("Charmaleon",58,58,64,58,5000);
+        Pokemon Charmander = new Pokemon("Charmander",39,39,52,43,25);
+        Pokemon Charmeleon = new Pokemon("Charmaleon",58,58,64,58,50);
         Pokemon Charizard = new Pokemon("Charizard",78,78,84,78,-1);
         //las añado a la lineaevolutiva de forma estrategica, pues añado desde el ultimo hasta el primero para que el head
         //quede con charmander
@@ -82,16 +84,33 @@ public class Main {
         //iniciarEntrenamientoMasivo(pokemon1,hordaEnemigos,50);
 
 
-        Pokemon [] hordaCartepie = new Pokemon[100000];
+        Pokemon [] hordaCartepie = new Pokemon[25000];
 
         for (int i = 0; i < hordaCartepie.length; i++) {
             Pokemon cartepie = new Pokemon("Cartepie",45,45,30,35,0);
             hordaCartepie[i] = cartepie;
         }
         //gananciaXP es la que se gana cuando se derrota
-        iniciarEntrenamientoMasivo(pokemon1,hordaCartepie,50);
+     //   iniciarEntrenamientoMasivo(pokemon1,hordaCartepie,50);
 
 
+        Pokemon pikachu = new Pokemon("Pikachu",20000,20000,2000,2000,50);
+        Pokemon pikachu2 = new Pokemon("Pikachu2",3000,3000,3000,3000,-1);
+
+        LineaEvolutiva pokemon2 = new LineaEvolutiva();
+        pokemon2.add(pikachu2);
+        pokemon2.add(pikachu);
+
+        LinkedList <LineaEvolutiva> equipoRocket = new LinkedList<>();
+        equipoRocket.add(pokemon1);
+        equipoRocket.add(pokemon2);
+
+         Pokemon [] hordaenemigoK = new Pokemon[50];
+        for (int i = 0; i < hordaenemigoK.length; i++) {
+
+        }
+
+        enfrentamientoEquipo(equipoRocket,hordaCartepie,50);
 
     }
 
@@ -148,5 +167,60 @@ public class Main {
         log.info("estado de la memoria despues de la lógica del método");
         PerformanceReporter.reportarMemoriaSistema();
 
+    }
+
+    public static void enfrentamientoEquipo (LinkedList <LineaEvolutiva> equipoRocket, Pokemon[] hordacaterpie,int gananciaXP){
+
+
+
+        for (int j = 0; j < 4; j++) {
+            Pokemon pokemonenBatalla =  equipoRocket.getFirst().getFaseActual();
+            LineaEvolutiva lineapokemon = equipoRocket.getFirst();
+
+            System.out.print("pokemon en lucha: " + pokemonenBatalla );
+
+            for (int i = 0; i < hordacaterpie.length; i++) {
+                pokemonenBatalla.setHp(pokemonenBatalla.getHpMaximo());//le subimos la vida al máximo después de cada pelea
+                //escoge al primer enemigo
+                Pokemon enemigo = hordacaterpie[i];
+                //calculo los daños con la formula del documento pdf
+                int dañoaEnemigo = Math.max(1, pokemonenBatalla.getAtaque() - enemigo.getDefensa());
+                int dañoAsumido = Math.max(1, enemigo.getAtaque() - pokemonenBatalla.getDefensa());
+                //implemento la logica de vida que esta en lineaEvolutiva
+                boolean vidaEnemigo = enemigo.vida();
+                boolean vidamipokemon = pokemonenBatalla.vida();
+
+
+                while (vidamipokemon && vidaEnemigo) {
+                    //peleo con el primer enemigo por turnos
+                    int rest1 = enemigo.getHp() - dañoaEnemigo;
+                    enemigo.setHp(rest1);
+                    //si la vida del enemigo es 0 o menos mi pokemon gana xp y utiliza el metodo evolucionar que esta contenido dentro del metodo
+                    //ganar experiencia
+                    if (enemigo.getHp() <= 0) {
+                        //le añado 50 de experiencia al acumulador
+                        lineapokemon.ganarExperiencia(gananciaXP);
+                        //la vida cambia a false y se sale del while
+                        vidaEnemigo = false;
+                        break;
+                    }
+                    int rest2 = lineapokemon.getHp() - dañoAsumido;
+                    lineapokemon.setHp(rest2);
+                    // si mi pokemon muere se acaba y ya
+                    if (lineapokemon.getHp() <= 0) {
+                        //la vida se convierte en false y se sale
+                        vidamipokemon = false;
+
+                    }
+
+
+                }
+
+
+            }
+
+            equipoRocket.remove().getFaseActual();
+            equipoRocket.add(lineapokemon);
+        }
     }
 }

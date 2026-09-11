@@ -1,6 +1,36 @@
-2026-09-10 00:11:10 [main] INFO  performance - Memoria JVM | usada: 16.85 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 13.38%
-2026-09-10 00:11:10 [main] INFO  performance - Memoria física | usada: 7510.24 MB | total: 7965.35 MB | disponible: 455.11 MB
-2026-09-10 00:11:13 [main] INFO  performance - Objeto 'Linea de evolucion' | tamaño superficial: 24 bytes | con referencias: 384 bytes
-2026-09-10 00:11:13 [main] INFO  performance - Objeto 'nodo enemigo()' | tamaño superficial: 40 bytes | con referencias: 88 bytes
-2026-09-10 00:11:13 [main] INFO  performance - Memoria JVM | usada: 25.47 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 20.21%
-2026-09-10 00:11:13 [main] INFO  performance - Memoria física | usada: 7537.57 MB | total: 7965.35 MB | disponible: 427.78 MB
+2026-09-11 12:56:56 [main] INFO  performance - Memoria JVM | usada: 14.12 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 11.21%
+2026-09-11 12:56:56 [main] INFO  performance - Memoria física | usada: 6758.04 MB | total: 7965.35 MB | disponible: 1207.31 MB
+2026-09-11 12:57:01 [main] INFO  performance - Objeto 'Linea de evolucion' | tamaño superficial: 24 bytes | con referencias: 384 bytes
+2026-09-11 12:57:01 [main] INFO  performance - Objeto 'nodo enemigo()' | tamaño superficial: 40 bytes | con referencias: 88 bytes
+2026-09-11 12:57:01 [main] INFO  performance - Memoria JVM | usada: 23.09 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 18.33%
+2026-09-11 12:57:01 [main] INFO  performance - Memoria física | usada: 6768.66 MB | total: 7965.35 MB | disponible: 1196.69 MB
+2026-09-11 12:58:07 [main] INFO  performance - Memoria JVM | usada: 13.87 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 11.01%
+2026-09-11 12:58:07 [main] INFO  performance - Memoria física | usada: 6816.53 MB | total: 7965.35 MB | disponible: 1148.82 MB
+2026-09-11 12:58:10 [main] INFO  performance - Objeto 'Linea de evolucion' | tamaño superficial: 24 bytes | con referencias: 384 bytes
+2026-09-11 12:58:10 [main] INFO  performance - Objeto 'nodo enemigo()' | tamaño superficial: 40 bytes | con referencias: 88 bytes
+2026-09-11 12:58:10 [main] INFO  performance - Memoria JVM | usada: 22.08 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 17.53%
+2026-09-11 12:58:10 [main] INFO  performance - Memoria física | usada: 6846.18 MB | total: 7965.35 MB | disponible: 1119.17 MB
+2026-09-11 12:59:03 [main] INFO  performance - Memoria JVM | usada: 13.91 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 11.04%
+2026-09-11 12:59:03 [main] INFO  performance - Memoria física | usada: 6909.02 MB | total: 7965.35 MB | disponible: 1056.33 MB
+2026-09-11 12:59:06 [main] INFO  performance - Objeto 'Linea de evolucion' | tamaño superficial: 24 bytes | con referencias: 384 bytes
+2026-09-11 12:59:06 [main] INFO  performance - Objeto 'nodo enemigo()' | tamaño superficial: 40 bytes | con referencias: 88 bytes
+2026-09-11 12:59:06 [main] INFO  performance - Memoria JVM | usada: 22.12 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 17.56%
+2026-09-11 12:59:06 [main] INFO  performance - Memoria física | usada: 6927.45 MB | total: 7965.35 MB | disponible: 1037.89 MB
+2026-09-11 13:01:23 [main] INFO  performance - Memoria JVM | usada: 23.06 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 18.30%
+2026-09-11 13:01:23 [main] INFO  performance - Memoria física | usada: 6902.77 MB | total: 7965.35 MB | disponible: 1062.58 MB
+2026-09-11 13:01:25 [main] INFO  performance - Objeto 'Linea de evolucion' | tamaño superficial: 24 bytes | con referencias: 384 bytes
+2026-09-11 13:01:25 [main] INFO  performance - Objeto 'nodo enemigo()' | tamaño superficial: 40 bytes | con referencias: 88 bytes
+2026-09-11 13:01:25 [main] INFO  performance - Memoria JVM | usada: 33.83 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 26.85%
+2026-09-11 13:01:25 [main] INFO  performance - Memoria física | usada: 6884.58 MB | total: 7965.35 MB | disponible: 1080.77 MB
+2026-09-11 13:02:00 [main] INFO  performance - Memoria JVM | usada: 23.00 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 18.25%
+2026-09-11 13:02:00 [main] INFO  performance - Memoria física | usada: 6925.63 MB | total: 7965.35 MB | disponible: 1039.72 MB
+2026-09-11 13:02:04 [main] INFO  performance - Objeto 'Linea de evolucion' | tamaño superficial: 24 bytes | con referencias: 384 bytes
+2026-09-11 13:02:04 [main] INFO  performance - Objeto 'nodo enemigo()' | tamaño superficial: 40 bytes | con referencias: 88 bytes
+2026-09-11 13:02:04 [main] INFO  performance - Memoria JVM | usada: 33.79 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 26.82%
+2026-09-11 13:02:04 [main] INFO  performance - Memoria física | usada: 6906.50 MB | total: 7965.35 MB | disponible: 1058.85 MB
+2026-09-11 13:03:51 [main] INFO  performance - Memoria JVM | usada: 13.86 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 11.00%
+2026-09-11 13:03:51 [main] INFO  performance - Memoria física | usada: 7066.61 MB | total: 7965.35 MB | disponible: 898.74 MB
+2026-09-11 13:03:54 [main] INFO  performance - Objeto 'Linea de evolucion' | tamaño superficial: 24 bytes | con referencias: 384 bytes
+2026-09-11 13:03:54 [main] INFO  performance - Objeto 'nodo enemigo()' | tamaño superficial: 40 bytes | con referencias: 88 bytes
+2026-09-11 13:03:54 [main] INFO  performance - Memoria JVM | usada: 22.47 MB | asignada: 126.00 MB | máxima: 1992.00 MB | uso: 17.84%
+2026-09-11 13:03:54 [main] INFO  performance - Memoria física | usada: 7098.60 MB | total: 7965.35 MB | disponible: 866.75 MB
